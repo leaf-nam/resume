@@ -138,7 +138,16 @@ body {
   font-weight: 800;
   font-size: 13px;
   letter-spacing: 0.5px;
-  margin: 0 0 4px;
+  margin: 0;
+}
+.title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 8px;
+}
+.title-row h1 {
+  margin: 0;
 }
 h1 {
   font-size: clamp(28px, 4vw, 36px);
@@ -418,110 +427,114 @@ section {
   }
 }
 
-/* 인쇄: A4 1장 맞춤, 배경 그래픽 ON, 머리글/바닥글 OFF 기준 */
+/* 인쇄: A4 1장 맞춤, 배경 그래픽 ON, 머리글/바닥글 OFF 기준
+ * @page 여백과 아래 JS의 PRINT_MARGIN_MM을 동일하게 유지할 것 */
 @page {
   size: A4 portrait;
-  margin: 7mm 9mm;
+  margin: 10mm;
 }
-@media print {
-  .no-print {
-    display: none !important;
-  }
-  body {
-    background: #fff;
-    line-height: 1.38;
-  }
-  .wrap {
-    max-width: none;
-    padding: 0;
-    margin: 0;
-  }
-  .sheet {
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-  }
-  .kicker {
-    font-size: 7.5pt;
-    margin: 0 0 1mm;
-  }
-  h1 {
-    font-size: 16pt;
-    margin: 0 0 1mm;
-  }
-  .resume-head .meta {
-    font-size: 7.5pt;
-    gap: 1mm 3mm;
-  }
-  .resume-head .meta svg {
-    width: 3mm;
-    height: 3mm;
-  }
-  h2 {
-    font-size: 10pt;
-    margin: 1.8mm 0 1mm;
-    padding-bottom: 0.8mm;
-  }
-  h3 {
-    font-size: 9pt;
-    margin: 0 0 0.8mm;
-  }
-  h4 {
-    font-size: 8pt;
-    margin: 0.8mm 0 0.5mm;
-  }
-  ul.tight {
-    font-size: 7.5pt;
-    gap: 0.5mm;
-    margin: 0 0 0.8mm;
-    padding-left: 3mm;
-  }
-  .sub {
-    font-size: 7pt;
-    margin: 0.5mm 0;
-  }
-  .note {
-    font-size: 7pt;
-    margin: 0.8mm 0;
-  }
-  .pill {
-    font-size: 6.5pt;
-    padding: 0.7mm 2.2mm;
-  }
-  .job {
-    break-inside: avoid;
-    border-radius: 2mm;
-    padding: 1.2mm 2mm;
-    margin-bottom: 1mm;
-  }
-  .job-grid {
-    grid-template-columns: 165px 1fr;
-    gap: 8px;
-    margin-top: 0.8mm;
-  }
-  .job-side {
-    padding-right: 8px;
-  }
-  .job-side > .pill {
-    margin-bottom: 1mm;
-  }
-  .job-cols {
-    gap: 0.8mm 8px;
-    margin-top: 0.5mm;
-  }
-  .cols2 {
-    gap: 6px;
-  }
-  .block {
-    border-radius: 2mm;
-    padding: 1.5mm 2mm;
-  }
-  .block h3 {
-    margin: 0 0 0.8mm;
-  }
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+/* 인쇄 스타일 (html.pf 강제 적용 시 화면에서도 동일 렌더 → 자동 맞춤 측정용) */
+html.pf .no-print {
+  display: none !important;
+}
+html.pf body {
+  background: #fff;
+  line-height: 1.42;
+}
+html.pf .wrap {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+html.pf .sheet {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  zoom: var(--print-zoom, 1);
+}
+html.pf .kicker {
+  font-size: 7.5pt;
+  margin: 0;
+}
+html.pf .title-row {
+  margin: 0 0 1mm;
+}
+html.pf h1 {
+  font-size: 17pt;
+  margin: 0;
+}
+html.pf .resume-head .meta {
+  font-size: 7.5pt;
+  gap: 1mm 4mm;
+}
+html.pf .resume-head .meta svg {
+  width: 3.5mm;
+  height: 3.5mm;
+}
+html.pf h2 {
+  font-size: 10.5pt;
+  margin: 2.2mm 0 1.2mm;
+  padding-bottom: 0.8mm;
+}
+html.pf h3 {
+  font-size: 9.5pt;
+  margin: 0 0 0.8mm;
+}
+html.pf h4 {
+  font-size: 8.5pt;
+  margin: 1.2mm 0 0.6mm;
+}
+html.pf ul.tight {
+  font-size: 7.5pt;
+  gap: 0.6mm;
+  margin: 0 0 1mm;
+  padding-left: 3mm;
+}
+html.pf .sub {
+  font-size: 7pt;
+  margin: 0.8mm 0;
+}
+html.pf .note {
+  font-size: 7pt;
+  margin: 0.8mm 0;
+}
+html.pf .pill {
+  font-size: 7pt;
+  padding: 0.8mm 2.5mm;
+}
+html.pf .job {
+  break-inside: avoid;
+  border-radius: 2mm;
+  padding: 1.5mm 2.2mm;
+  margin-bottom: 1.2mm;
+}
+html.pf .job-grid {
+  grid-template-columns: 180px 1fr;
+  gap: 12px;
+  margin-top: 1mm;
+}
+html.pf .job-side {
+  padding-right: 12px;
+}
+html.pf .job-side > .pill {
+  margin-bottom: 1mm;
+}
+html.pf .job-cols {
+  gap: 0.8mm 8px;
+  margin-top: 0.8mm;
+}
+html.pf .cols2 {
+  gap: 8px;
+}
+html.pf .block {
+  border-radius: 2mm;
+  padding: 2mm 2.2mm;
+}
+html.pf .block h3 {
+  margin: 0 0 1mm;
+}
+html.pf a {
+  color: inherit;
+  text-decoration: none;
 }
