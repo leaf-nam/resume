@@ -246,6 +246,12 @@ h4 {
 .meta a:hover {
   color: var(--brand);
 }
+.meta svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  fill: var(--brand2);
+}
 ul.tight {
   margin: 0 0 6px;
   padding-left: 20px;
@@ -314,6 +320,52 @@ ul.tight {
   color: var(--brand);
   font-size: 13px;
 }
+/* 경력: 회사명·역할 분리 / 기간은 카드 최상단 뱃지 */
+#careers .job-head h3 {
+  min-width: 0;
+}
+#careers .job-head .role {
+  display: inline;
+  margin-left: 6px;
+  font-size: 0.85em;
+  font-weight: 700;
+  color: var(--brand2);
+}
+.job-side > .pill {
+  margin-bottom: 8px;
+}
+/* 카드 2열: 좌측 제목·업무·역할 / 우측 내용 */
+.job-grid {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.job-side {
+  border-right: 1px dashed var(--line);
+  padding-right: 16px;
+}
+.job-side .sub {
+  margin-bottom: 0;
+}
+.job-body > h4:first-child,
+.job-body > ul.tight:first-child {
+  margin-top: 0;
+}
+/* 카드 내부 2열 배치 */
+.job-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+  margin-top: 6px;
+}
+.job-cols h4:first-child {
+  margin-top: 0;
+}
+ul.tight.split {
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+}
 .pill {
   display: inline-block;
   background: var(--brand2);
@@ -354,8 +406,15 @@ section {
     padding: 22px 18px;
   }
   .cols2,
-  .cols3 {
+  .cols3,
+  .job-cols,
+  .job-grid,
+  ul.tight.split {
     grid-template-columns: 1fr;
+  }
+  .job-side {
+    border-right: 0;
+    padding-right: 0;
   }
 }
 
