@@ -15,11 +15,12 @@
     ?.addEventListener("click", () => window.print());
 
   // 인쇄 1장 자동 맞춤: 인쇄 스타일 강제 적용 클론으로 정확히 실측 후 zoom 축소
-  // @page 여백과 PRINT_MARGIN_MM을 동일하게 유지할 것 (단위: mm, A4 210x297)
+  // 외곽 여백 = .sheet 패딩(PRINT_MARGIN_MM)과 동일하게 유지 (단위: mm, A4 210x297)
+  // 클론은 용지 전체 폭으로 잡고 패딩을 포함해 잰다 (box-sizing: border-box 기준)
   var PRINT_MARGIN_MM = 10;
   var PX_PER_MM = 96 / 25.4;
-  function printContentWidth() {
-    return Math.floor((210 - PRINT_MARGIN_MM * 2) * PX_PER_MM);
+  function printPageWidth() {
+    return Math.floor(210 * PX_PER_MM);
   }
   function printAvailHeight() {
     return Math.floor((297 - PRINT_MARGIN_MM * 2) * PX_PER_MM);
@@ -35,7 +36,7 @@
     clone.setAttribute("aria-hidden", "true");
     clone.style.cssText =
       "position:fixed;left:-99999px;top:0;width:" +
-      printContentWidth() +
+      printPageWidth() +
       "px;visibility:hidden;pointer-events:none;";
     document.body.appendChild(clone);
     var h = clone.scrollHeight;

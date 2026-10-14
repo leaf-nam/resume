@@ -427,11 +427,12 @@ section {
   }
 }
 
-/* 인쇄: A4 1장 맞춤, 배경 그래픽 ON, 머리글/바닥글 OFF 기준
- * @page 여백과 아래 JS의 PRINT_MARGIN_MM을 동일하게 유지할 것 */
+/* 인쇄: A4 1장 맞춤, 배경 그래픽 ON, 머리글/바닥글 OFF, 여백 "없음" 기준
+ * 여백은 @page가 아니라 .sheet 패딩으로 확보 (브라우저 여백 설정에 덮어쓰이지 않음)
+ * .sheet 패딩과 아래 JS의 PRINT_MARGIN_MM을 동일하게 유지할 것 */
 @page {
   size: A4 portrait;
-  margin: 10mm;
+  margin: 0;
 }
 /* 인쇄 스타일 (html.pf 강제 적용 시 화면에서도 동일 렌더 → 자동 맞춤 측정용) */
 html.pf .no-print {
@@ -450,7 +451,7 @@ html.pf .sheet {
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  padding: 0;
+  padding: 10mm;
   zoom: var(--print-zoom, 1);
 }
 html.pf .kicker {
